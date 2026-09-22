@@ -8,10 +8,10 @@
 
 | 功能 | 状态 |
 |------|------|
-| 小学1-6年级生字库（约2500字） | ⏳ 开发中 |
-| 部编版教材词语表（约6600词） | ⏳ 开发中 |
-| 自扩充词库功能 | ⏳ 开发中 |
-| 二维码分享词库 | ⏳ 开发中 |
+| 小学1-6年级生字库（549字，待扩充） | 🔄 进行中 |
+| 部编版教材词语表（约6600词） | ⏳ 待开始 |
+| 自扩充词库功能 | ⏳ 待开始 |
+| 二维码分享词库 | ⏳ 待开始 |
 
 详细进度请查看 [项目状态](docs/项目状态.md)
 
@@ -50,46 +50,49 @@
 ```
 CnStrokesDict/
 ├── app/
-│   └── src/main/java/com/cnstrokesdict/app/
-│       ├── MainActivity.kt              # 主 Activity，导航入口
-│       ├── data/
-│       │   ├── DictionaryModels.kt      # 数据模型定义
-│       │   ├── DictionaryRepository.kt  # 数据仓库层
-│       │   ├── SearchTextUtil.kt        # 搜索文本工具
-│       │   └── db/
-│       │       ├── DictionaryDatabase.kt  # Room 数据库
-│       │       ├── DictionaryDao.kt       # 数据访问对象
-│       │       ├── DictMeta.kt            # 字典元数据实体
-│       │       ├── DictMetaFts.kt         # FTS 全文搜索实体
-│       │       └── DictPayload.kt         # 字典详情实体
-│       ├── speech/
-│       │   └── VoskChineseAsr.kt       # Vosk 离线语音识别
-│       ├── ui/
-│       │   ├── home/
-│       │   │   └── SearchScreen.kt     # 搜索页面
-│       │   ├── detail/
-│       │   │   ├── DetailScreen.kt     # 汉字详情页面
-│       │   │   ├── StrokeCanvas.kt     # 笔画绘制 Canvas
-│       │   │   └── MiZiGeStrokeBox.kt  # 米字格容器
-│       │   └── theme/
-│       │       └── Theme.kt            # Material3 主题
-│       ├── util/
-│       │   └── VoiceQueryParser.kt     # 语音查询解析
-│       └── vm/
-│           └── DictionaryViewModel.kt  # ViewModel 层
-├── scripts/
-│   ├── build_characters_json.py        # 构建字典 JSON
-│   ├── build_characters_bulk.py        # 批量构建字典
-│   ├── character_build_util.py         # 构建工具函数
-│   ├── meta_rich.py                    # 字典元数据
-│   ├── hanzi_raw/                      # 原始笔画数据
-│   └── install_android_sdk.ps1         # SDK 安装脚本
-├── docs/                               # 项目文档
-│   ├── V1设计方案.md                    # V1版本设计方案
-│   └── 项目状态.md                      # 项目进度跟踪
-├── build.gradle.kts                    # 根构建脚本
-├── FAQ.md                              # 常见问题解答
-└── gradle.properties                   # Gradle 配置
+│   └── src/main/
+│       ├── assets/dictionary/
+│       │   └── characters.json         # 单字数据（549字）
+│       └── java/com/cnstrokesdict/app/
+│           ├── MainActivity.kt              # 主 Activity，导航入口
+│           ├── data/
+│           │   ├── DictionaryModels.kt      # 数据模型定义
+│           │   ├── DictionaryRepository.kt  # 数据仓库层
+│           │   ├── SearchTextUtil.kt        # 搜索文本工具
+│           │   └── db/
+│           │       ├── DictionaryDatabase.kt  # Room 数据库
+│           │       ├── DictionaryDao.kt       # 数据访问对象
+│           │       ├── DictMeta.kt            # 字典元数据实体
+│           │       ├── DictMetaFts.kt         # FTS 全文搜索实体
+│           │       └── DictPayload.kt         # 字典详情实体
+│           ├── speech/
+│           │   └── VoskChineseAsr.kt       # Vosk 离线语音识别
+│           ├── ui/
+│           │   ├── home/
+│           │   │   └── SearchScreen.kt     # 搜索页面
+│           │   ├── detail/
+│           │   │   ├── DetailScreen.kt     # 汉字详情页面
+│           │   │   ├── StrokeCanvas.kt     # 笔画绘制 Canvas
+│           │   │   └── MiZiGeStrokeBox.kt  # 米字格容器
+│           │   └── theme/
+│           │       └── Theme.kt            # Material3 主题
+│           ├── util/
+│           │   └── VoiceQueryParser.kt     # 语音查询解析
+│           └── vm/
+│               └── DictionaryViewModel.kt  # ViewModel 层
+├── scripts/                                # 构建脚本
+│   ├── primary_school_chars.js             # 小学1-6年级生字清单
+│   ├── fetch_hanzi_data.js                 # 批量获取笔画数据
+│   ├── build_full_dictionary.js            # 构建完整字库JSON
+│   ├── hanzi_raw/                          # 原始笔画数据（551字）
+│   ├── dict_data/                          # 构建的字库数据
+│   └── install_android_sdk.ps1             # SDK 安装脚本
+├── docs/                                   # 项目文档
+│   ├── V1设计方案.md                        # V1版本设计方案
+│   └── 项目状态.md                          # 项目进度跟踪
+├── build.gradle.kts                        # 根构建脚本
+├── FAQ.md                                  # 常见问题解答
+└── gradle.properties                       # Gradle 配置
 ```
 
 ## 环境要求
@@ -129,13 +132,15 @@ powershell -ExecutionPolicy Bypass -File .\install_android_sdk.ps1
 # 或直接在 Android Studio 中点击 Run
 ```
 
-### 4. 生成字典数据（可选）
+### 4. 构建字库数据（可选）
 
-如需扩展字库：
+如需重新构建字库：
 
 ```bash
 cd scripts
-python build_characters_json.py
+node primary_school_chars.js          # 查看生字统计
+node fetch_hanzi_data.js              # 获取笔画数据（需联网）
+node build_full_dictionary.js         # 构建字库JSON
 ```
 
 生成的 `characters.json` 位于 `app/src/main/assets/dictionary/`。
