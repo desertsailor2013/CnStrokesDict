@@ -78,4 +78,10 @@ interface WordDao {
 
     @Query("DELETE FROM word_packages WHERE id = :id")
     suspend fun deletePackage(id: Int)
+
+    @Query("SELECT * FROM words WHERE package_id = :packageId ORDER BY word")
+    suspend fun getWordsByPackageId(packageId: Int): List<WordEntity>
+
+    @Query("SELECT COUNT(*) FROM words WHERE package_id = :packageId")
+    suspend fun countWordsByPackageId(packageId: Int): Int
 }

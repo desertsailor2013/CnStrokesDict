@@ -18,6 +18,7 @@ import androidx.navigation.compose.rememberNavController
 import com.cnstrokesdict.app.ui.detail.DetailScreen
 import com.cnstrokesdict.app.ui.home.SearchScreen
 import com.cnstrokesdict.app.ui.theme.CnStrokesTheme
+import com.cnstrokesdict.app.ui.wordmanager.WordPackageManagerScreen
 import com.cnstrokesdict.app.vm.DictionaryViewModel
 import kotlinx.coroutines.launch
 
@@ -41,6 +42,7 @@ class MainActivity : ComponentActivity() {
 
 private const val ROUTE_SEARCH = "search"
 private const val ROUTE_DETAIL = "detail"
+private const val ROUTE_WORD_MANAGER = "word_manager"
 
 @Composable
 fun DictionaryApp() {
@@ -67,6 +69,7 @@ fun DictionaryApp() {
                         nav.navigate(ROUTE_DETAIL)
                     }
                 },
+                onOpenWordManager = { nav.navigate(ROUTE_WORD_MANAGER) },
             )
         }
         composable(ROUTE_DETAIL) {
@@ -77,6 +80,11 @@ fun DictionaryApp() {
             }
             DetailScreen(
                 entry = entry,
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_WORD_MANAGER) {
+            WordPackageManagerScreen(
                 onBack = { nav.popBackStack() },
             )
         }
