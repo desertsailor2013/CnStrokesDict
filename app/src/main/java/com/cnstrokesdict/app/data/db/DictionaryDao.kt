@@ -61,4 +61,15 @@ interface DictionaryDao {
         """,
     )
     suspend fun searchDocumentContains(needle: String): List<CharacterListItem>
+
+    /** 按拼音搜索 */
+    @Query(
+        """
+        SELECT meta.`char` AS character, meta.pinyin AS pinyin, meta.definition_preview AS definitionPreview
+        FROM dict_meta AS meta
+        WHERE instr(lower(meta.pinyin), lower(:needle)) > 0
+        ORDER BY meta.`char`
+        """,
+    )
+    suspend fun searchByPinyin(needle: String): List<CharacterListItem>
 }
