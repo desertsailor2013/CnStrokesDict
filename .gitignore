@@ -1,0 +1,13 @@
+/.gradle/
+/build/
+/app/build/
+/app/release/
+/.idea/
+/.kotlin/
+*.iml
+local.properties
+.DS_Store
+/_gradle_dl/
+/.venv/
+/scripts/vendor/graphics.txt
+/scripts/vendor/makemeahanzi/
