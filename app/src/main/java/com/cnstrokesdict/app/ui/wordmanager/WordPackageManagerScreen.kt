@@ -26,6 +26,8 @@ import java.io.File
 @Composable
 fun WordPackageManagerScreen(
     onBack: () -> Unit,
+    onSharePackage: (Int) -> Unit = {},
+    onScanQrCode: () -> Unit = {},
     viewModel: WordPackageManagerViewModel = viewModel(),
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -53,6 +55,9 @@ fun WordPackageManagerScreen(
                     }
                 },
                 actions = {
+                    IconButton(onClick = onScanQrCode) {
+                        Icon(Icons.Default.CameraAlt, contentDescription = "扫码导入")
+                    }
                     IconButton(onClick = { showImportDialog = true }) {
                         Icon(Icons.Default.FileUpload, contentDescription = "导入")
                     }
@@ -131,6 +136,7 @@ fun WordPackageManagerScreen(
                             onToggleActive = { isActive ->
                                 viewModel.setPackageActive(packageEntity.id, isActive)
                             },
+                            onShare = onSharePackage,
                         )
                     }
                 }
@@ -191,6 +197,7 @@ fun WordPackageCard(
     onExport: (File) -> Unit,
     onDelete: () -> Unit,
     onToggleActive: (Boolean) -> Unit,
+    onShare: (Int) -> Unit = {},
 ) {
     val context = LocalContext.current
 
@@ -258,6 +265,13 @@ fun WordPackageCard(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.End,
             ) {
+                IconButton(onClick = { onShare(packageEntity.id) }) {
+                    Icon(
+                        Icons.Default.Share,
+                        contentDescription = "分享",
+                        tint = MaterialTheme.colorScheme.primary,
+                    )
+                }
                 IconButton(onClick = {
                     val exportDir = File(context.getExternalFilesDir(null), "exports")
                     exportDir.mkdirs()

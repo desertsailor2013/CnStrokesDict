@@ -76,6 +76,16 @@ dependencies {
     implementation("com.alphacephei:vosk-android:0.3.75")
     implementation("net.java.dev.jna:jna:5.13.0@aar")
 
+    // 二维码生成（ZXing，Apache-2.0）
+    implementation("com.google.zxing:core:3.5.3")
+
+    // CameraX用于扫码
+    val cameraxVer = "1.4.0"
+    implementation("androidx.camera:camera-core:$cameraxVer")
+    implementation("androidx.camera:camera-camera2:$cameraxVer")
+    implementation("androidx.camera:camera-lifecycle:$cameraxVer")
+    implementation("androidx.camera:camera-view:$cameraxVer")
+
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 }

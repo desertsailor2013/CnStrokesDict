@@ -17,6 +17,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.cnstrokesdict.app.ui.detail.DetailScreen
 import com.cnstrokesdict.app.ui.home.SearchScreen
+import com.cnstrokesdict.app.ui.qrscan.QrScanScreen
+import com.cnstrokesdict.app.ui.qrshare.QrShareScreen
 import com.cnstrokesdict.app.ui.theme.CnStrokesTheme
 import com.cnstrokesdict.app.ui.wordmanager.WordPackageManagerScreen
 import com.cnstrokesdict.app.vm.DictionaryViewModel
@@ -43,6 +45,8 @@ class MainActivity : ComponentActivity() {
 private const val ROUTE_SEARCH = "search"
 private const val ROUTE_DETAIL = "detail"
 private const val ROUTE_WORD_MANAGER = "word_manager"
+private const val ROUTE_QR_SHARE = "qr_share/{packageId}"
+private const val ROUTE_QR_SCAN = "qr_scan"
 
 @Composable
 fun DictionaryApp() {
@@ -86,6 +90,27 @@ fun DictionaryApp() {
         composable(ROUTE_WORD_MANAGER) {
             WordPackageManagerScreen(
                 onBack = { nav.popBackStack() },
+                onSharePackage = { packageId ->
+                    nav.navigate("qr_share/$packageId")
+                },
+                onScanQrCode = { nav.navigate(ROUTE_QR_SCAN) },
+            )
+        }
+        composable(ROUTE_QR_SHARE) { backStackEntry ->
+            val packageId = backStackEntry.arguments?.getString("packageId")?.toIntOrNull()
+            if (packageId == null) {
+                nav.popBackStack()
+                return@composable
+            }
+            QrShareScreen(
+                packageId = packageId,
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_QR_SCAN) {
+            QrScanScreen(
+                onBack = { nav.popBackStack() },
+                onImportSuccess = { nav.popBackStack() },
             )
         }
     }
