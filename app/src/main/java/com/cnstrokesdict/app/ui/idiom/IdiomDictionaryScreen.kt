@@ -51,6 +51,7 @@ fun IdiomDictionaryScreen(
                 onQueryChange = { viewModel.searchIdioms(it) },
                 onSearch = { viewModel.searchIdioms(it) },
                 onClear = { viewModel.clearSearch() },
+                onRandom = { viewModel.getRandomIdioms() },
             )
 
             // 加载状态
@@ -110,24 +111,45 @@ fun IdiomSearchBar(
     onQueryChange: (String) -> Unit,
     onSearch: (String) -> Unit,
     onClear: () -> Unit,
+    onRandom: () -> Unit = {},
 ) {
-    OutlinedTextField(
-        value = query,
-        onValueChange = onQueryChange,
+    Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp),
-        placeholder = { Text("搜索成语...") },
-        leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
-        trailingIcon = {
-            if (query.isNotEmpty()) {
-                IconButton(onClick = onClear) {
-                    Icon(Icons.Default.Clear, contentDescription = "清除")
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+    ) {
+        OutlinedTextField(
+            value = query,
+            onValueChange = onQueryChange,
+            modifier = Modifier.weight(1f),
+            placeholder = { Text("搜索成语...") },
+            leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+            trailingIcon = {
+                if (query.isNotEmpty()) {
+                    IconButton(onClick = onClear) {
+                        Icon(Icons.Default.Clear, contentDescription = "清除")
+                    }
                 }
-            }
-        },
-        singleLine = true,
-    )
+            },
+            singleLine = true,
+        )
+        IconButton(
+            onClick = onRandom,
+            modifier = Modifier
+                .size(56.dp)
+                .background(
+                    MaterialTheme.colorScheme.primaryContainer,
+                    MaterialTheme.shapes.medium,
+                ),
+        ) {
+            Icon(
+                Icons.Default.Shuffle,
+                contentDescription = "随机成语",
+                tint = MaterialTheme.colorScheme.onPrimaryContainer,
+            )
+        }
+    }
 }
 
 /**
@@ -311,6 +333,7 @@ fun IdiomDetailDialog(
                     style = MaterialTheme.typography.headlineMedium,
                     color = MaterialTheme.colorScheme.primary,
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
                     text = idiom.pinyin,
                     style = MaterialTheme.typography.bodyMedium,
