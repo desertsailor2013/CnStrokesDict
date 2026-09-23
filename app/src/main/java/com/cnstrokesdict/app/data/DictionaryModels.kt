@@ -147,3 +147,66 @@ data class TextbookWordEntry(
     val lesson: Int = 0,
     val lessonTitle: String = "",
 )
+
+/** 成语词典条目 */
+@Serializable
+data class IdiomDictEntry(
+    val idiom: String,
+    val pinyin: String,
+    val meaning: String,
+    val source: String = "",
+    val examples: List<String> = emptyList(),
+    val synonyms: List<String> = emptyList(),
+    val antonyms: List<String> = emptyList(),
+    val category: String = "",
+    val difficulty: Int = 1,
+)
+
+/** 成语词典根结构 */
+@Serializable
+data class IdiomDictRoot(
+    val version: String = "",
+    val description: String = "",
+    val totalCount: Int = 0,
+    val categories: List<IdiomCategory> = emptyList(),
+    val idioms: List<IdiomDictEntry> = emptyList(),
+    val stats: Map<String, Int> = emptyMap(),
+)
+
+/** 成语分类 */
+@Serializable
+data class IdiomCategory(
+    val name: String,
+    val label: String = "",
+    val count: Int = 0,
+)
+
+/** 高中词语库根结构 */
+@Serializable
+data class SeniorHighWordsRoot(
+    val version: String = "",
+    val description: String = "",
+    val totalCount: Int = 0,
+    val grades: List<SeniorHighGrade> = emptyList(),
+    val stats: Map<String, Int> = emptyList(),
+)
+
+/** 高中年级词语 */
+@Serializable
+data class SeniorHighGrade(
+    val grade: Int,
+    val gradeName: String = "",
+    val wordCount: Int = 0,
+    val words: List<SeniorHighWordEntry> = emptyList(),
+)
+
+/** 高中词语条目 */
+@Serializable
+data class SeniorHighWordEntry(
+    val word: String,
+    val pinyin: String = "",
+    val meaning: String = "",
+    val lesson: Int = 0,
+    val lessonTitle: String = "",
+    val semester: Int = 0,
+)
