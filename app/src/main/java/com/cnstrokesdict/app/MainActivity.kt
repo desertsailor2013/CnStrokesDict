@@ -20,6 +20,7 @@ import com.cnstrokesdict.app.ui.home.SearchScreen
 import com.cnstrokesdict.app.ui.qrscan.QrScanScreen
 import com.cnstrokesdict.app.ui.qrshare.QrShareScreen
 import com.cnstrokesdict.app.ui.theme.CnStrokesTheme
+import com.cnstrokesdict.app.ui.update.UpdateScreen
 import com.cnstrokesdict.app.ui.wordmanager.WordPackageManagerScreen
 import com.cnstrokesdict.app.vm.DictionaryViewModel
 import kotlinx.coroutines.launch
@@ -30,7 +31,6 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CnStrokesTheme {
-                // 避免 edge-to-edge 下窗口默认背景为黑/透明导致整屏发黑；并保证根布局占满屏幕
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
@@ -47,6 +47,7 @@ private const val ROUTE_DETAIL = "detail"
 private const val ROUTE_WORD_MANAGER = "word_manager"
 private const val ROUTE_QR_SHARE = "qr_share/{packageId}"
 private const val ROUTE_QR_SCAN = "qr_scan"
+private const val ROUTE_UPDATE = "update"
 
 @Composable
 fun DictionaryApp() {
@@ -74,6 +75,7 @@ fun DictionaryApp() {
                     }
                 },
                 onOpenWordManager = { nav.navigate(ROUTE_WORD_MANAGER) },
+                onOpenUpdate = { nav.navigate(ROUTE_UPDATE) },
             )
         }
         composable(ROUTE_DETAIL) {
@@ -111,6 +113,11 @@ fun DictionaryApp() {
             QrScanScreen(
                 onBack = { nav.popBackStack() },
                 onImportSuccess = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_UPDATE) {
+            UpdateScreen(
+                onBack = { nav.popBackStack() },
             )
         }
     }

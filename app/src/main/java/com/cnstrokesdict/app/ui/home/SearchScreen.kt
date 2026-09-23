@@ -24,6 +24,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Mic
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.SystemUpdate
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -67,6 +68,7 @@ fun SearchScreen(
     onVoiceSearchResult: (String) -> Unit,
     onPickChar: (CharacterListItem) -> Unit,
     onOpenWordManager: () -> Unit = {},
+    onOpenUpdate: () -> Unit = {},
 ) {
     val ui by state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -165,6 +167,9 @@ fun SearchScreen(
             TopAppBar(
                 title = { Text("汉字查字") },
                 actions = {
+                    IconButton(onClick = onOpenUpdate) {
+                        Icon(Icons.Default.SystemUpdate, contentDescription = "检查更新")
+                    }
                     IconButton(onClick = onOpenWordManager) {
                         Icon(Icons.Default.Settings, contentDescription = "词库管理")
                     }
