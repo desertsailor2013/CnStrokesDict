@@ -17,6 +17,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.cnstrokesdict.app.ui.detail.DetailScreen
 import com.cnstrokesdict.app.ui.dictation.DictationScreen
+import com.cnstrokesdict.app.ui.game.IdiomChainScreen
+import com.cnstrokesdict.app.ui.game.IdiomQuizScreen
+import com.cnstrokesdict.app.ui.game.WordFillScreen
 import com.cnstrokesdict.app.ui.home.SearchScreen
 import com.cnstrokesdict.app.ui.idiom.IdiomDictionaryScreen
 import com.cnstrokesdict.app.ui.qrscan.QrScanScreen
@@ -54,6 +57,9 @@ private const val ROUTE_UPDATE = "update"
 private const val ROUTE_DICTATION = "dictation"
 private const val ROUTE_IDIOM_DICTIONARY = "idiom_dictionary"
 private const val ROUTE_LEARNING_STATS = "learning_stats"
+private const val ROUTE_IDIOM_CHAIN = "idiom_chain"
+private const val ROUTE_WORD_FILL = "word_fill"
+private const val ROUTE_IDIOM_QUIZ = "idiom_quiz"
 
 @Composable
 fun DictionaryApp() {
@@ -85,6 +91,9 @@ fun DictionaryApp() {
                 onOpenDictation = { nav.navigate(ROUTE_DICTATION) },
                 onOpenIdiomDictionary = { nav.navigate(ROUTE_IDIOM_DICTIONARY) },
                 onOpenLearningStats = { nav.navigate(ROUTE_LEARNING_STATS) },
+                onOpenIdiomChain = { nav.navigate(ROUTE_IDIOM_CHAIN) },
+                onOpenWordFill = { nav.navigate(ROUTE_WORD_FILL) },
+                onOpenIdiomQuiz = { nav.navigate(ROUTE_IDIOM_QUIZ) },
             )
         }
         composable(ROUTE_DETAIL) {
@@ -141,6 +150,21 @@ fun DictionaryApp() {
         }
         composable(ROUTE_LEARNING_STATS) {
             LearningStatsScreen(
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_IDIOM_CHAIN) {
+            IdiomChainScreen(
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_WORD_FILL) {
+            WordFillScreen(
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_IDIOM_QUIZ) {
+            IdiomQuizScreen(
                 onBack = { nav.popBackStack() },
             )
         }

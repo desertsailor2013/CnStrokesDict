@@ -69,6 +69,9 @@ fun SearchScreen(
     onOpenDictation: () -> Unit = {},
     onOpenIdiomDictionary: () -> Unit = {},
     onOpenLearningStats: () -> Unit = {},
+    onOpenIdiomChain: () -> Unit = {},
+    onOpenWordFill: () -> Unit = {},
+    onOpenIdiomQuiz: () -> Unit = {},
 ) {
     val ui by state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -175,6 +178,15 @@ fun SearchScreen(
                     }
                     IconButton(onClick = onOpenLearningStats) {
                         Icon(Icons.Default.BarChart, contentDescription = "学习统计")
+                    }
+                    IconButton(onClick = onOpenIdiomChain) {
+                        Icon(Icons.Default.Gamepad, contentDescription = "成语接龙")
+                    }
+                    IconButton(onClick = onOpenWordFill) {
+                        Icon(Icons.Default.Edit, contentDescription = "词语填空")
+                    }
+                    IconButton(onClick = onOpenIdiomQuiz) {
+                        Icon(Icons.Default.Quiz, contentDescription = "成语猜谜")
                     }
                     IconButton(onClick = onOpenUpdate) {
                         Icon(Icons.Default.SystemUpdate, contentDescription = "检查更新")
