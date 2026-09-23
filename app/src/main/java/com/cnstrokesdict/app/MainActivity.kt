@@ -24,6 +24,7 @@ import com.cnstrokesdict.app.ui.home.SearchScreen
 import com.cnstrokesdict.app.ui.idiom.IdiomDictionaryScreen
 import com.cnstrokesdict.app.ui.qrscan.QrScanScreen
 import com.cnstrokesdict.app.ui.qrshare.QrShareScreen
+import com.cnstrokesdict.app.ui.social.SocialScreen
 import com.cnstrokesdict.app.ui.stats.LearningStatsScreen
 import com.cnstrokesdict.app.ui.theme.CnStrokesTheme
 import com.cnstrokesdict.app.ui.update.UpdateScreen
@@ -60,6 +61,7 @@ private const val ROUTE_LEARNING_STATS = "learning_stats"
 private const val ROUTE_IDIOM_CHAIN = "idiom_chain"
 private const val ROUTE_WORD_FILL = "word_fill"
 private const val ROUTE_IDIOM_QUIZ = "idiom_quiz"
+private const val ROUTE_SOCIAL = "social"
 
 @Composable
 fun DictionaryApp() {
@@ -94,6 +96,7 @@ fun DictionaryApp() {
                 onOpenIdiomChain = { nav.navigate(ROUTE_IDIOM_CHAIN) },
                 onOpenWordFill = { nav.navigate(ROUTE_WORD_FILL) },
                 onOpenIdiomQuiz = { nav.navigate(ROUTE_IDIOM_QUIZ) },
+                onOpenSocial = { nav.navigate(ROUTE_SOCIAL) },
             )
         }
         composable(ROUTE_DETAIL) {
@@ -165,6 +168,11 @@ fun DictionaryApp() {
         }
         composable(ROUTE_IDIOM_QUIZ) {
             IdiomQuizScreen(
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_SOCIAL) {
+            SocialScreen(
                 onBack = { nav.popBackStack() },
             )
         }

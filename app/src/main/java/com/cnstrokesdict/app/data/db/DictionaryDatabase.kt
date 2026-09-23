@@ -19,8 +19,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         IdiomFts::class,
         LearningRecordEntity::class,
         LearningStatsEntity::class,
+        AchievementEntity::class,
+        LeaderboardEntity::class,
     ],
-    version = 3,
+    version = 4,
     exportSchema = false,
 )
 abstract class DictionaryDatabase : RoomDatabase() {
@@ -28,6 +30,7 @@ abstract class DictionaryDatabase : RoomDatabase() {
     abstract fun wordDao(): WordDao
     abstract fun idiomDao(): IdiomDao
     abstract fun learningDao(): LearningDao
+    abstract fun achievementDao(): AchievementDao
 
     companion object {
         @Volatile
@@ -167,6 +170,42 @@ abstract class DictionaryDatabase : RoomDatabase() {
             }
         }
 
+        /** 版本3 → 4：新增 achievements、leaderboard 表 */
+        private val MIGRATION_3_4 = object : Migration(3, 4) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS achievements (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        name TEXT NOT NULL,
+                        description TEXT NOT NULL DEFAULT '',
+                        icon TEXT NOT NULL DEFAULT '',
+                        category TEXT NOT NULL DEFAULT '',
+                        requirement TEXT NOT NULL DEFAULT '',
+                        reward INTEGER NOT NULL DEFAULT 0,
+                        is_unlocked INTEGER NOT NULL DEFAULT 0,
+                        unlocked_at INTEGER
+                    )
+                    """
+                )
+                db.execSQL("CREATE UNIQUE INDEX IF NOT EXISTS index_achievements_name ON achievements (name)")
+
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS leaderboard (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        player_name TEXT NOT NULL,
+                        score INTEGER NOT NULL DEFAULT 0,
+                        game_type TEXT NOT NULL DEFAULT '',
+                        timestamp INTEGER NOT NULL DEFAULT 0
+                    )
+                    """
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_leaderboard_score ON leaderboard (score DESC)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_leaderboard_game_type ON leaderboard (game_type)")
+            }
+        }
+
         fun getInstance(context: Context): DictionaryDatabase =
             instance ?: synchronized(this) {
                 instance ?: Room.databaseBuilder(
@@ -174,7 +213,7 @@ abstract class DictionaryDatabase : RoomDatabase() {
                     DictionaryDatabase::class.java,
                     "dictionary.db",
                 )
-                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+                    .addMigrations(MIGRATION_1_2, MIGRATION_2_3, MIGRATION_3_4)
                     .build().also { instance = it }
             }
     }

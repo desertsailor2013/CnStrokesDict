@@ -72,6 +72,7 @@ fun SearchScreen(
     onOpenIdiomChain: () -> Unit = {},
     onOpenWordFill: () -> Unit = {},
     onOpenIdiomQuiz: () -> Unit = {},
+    onOpenSocial: () -> Unit = {},
 ) {
     val ui by state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -187,6 +188,9 @@ fun SearchScreen(
                     }
                     IconButton(onClick = onOpenIdiomQuiz) {
                         Icon(Icons.Default.Quiz, contentDescription = "成语猜谜")
+                    }
+                    IconButton(onClick = onOpenSocial) {
+                        Icon(Icons.Default.Leaderboard, contentDescription = "排行榜")
                     }
                     IconButton(onClick = onOpenUpdate) {
                         Icon(Icons.Default.SystemUpdate, contentDescription = "检查更新")
