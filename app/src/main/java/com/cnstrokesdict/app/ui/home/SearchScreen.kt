@@ -67,6 +67,8 @@ fun SearchScreen(
     onOpenWordManager: () -> Unit = {},
     onOpenUpdate: () -> Unit = {},
     onOpenDictation: () -> Unit = {},
+    onOpenIdiomDictionary: () -> Unit = {},
+    onOpenLearningStats: () -> Unit = {},
 ) {
     val ui by state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -167,6 +169,12 @@ fun SearchScreen(
                 actions = {
                     IconButton(onClick = onOpenDictation) {
                         Icon(Icons.Default.RecordVoiceOver, contentDescription = "词语听写")
+                    }
+                    IconButton(onClick = onOpenIdiomDictionary) {
+                        Icon(Icons.Default.MenuBook, contentDescription = "成语词典")
+                    }
+                    IconButton(onClick = onOpenLearningStats) {
+                        Icon(Icons.Default.BarChart, contentDescription = "学习统计")
                     }
                     IconButton(onClick = onOpenUpdate) {
                         Icon(Icons.Default.SystemUpdate, contentDescription = "检查更新")
