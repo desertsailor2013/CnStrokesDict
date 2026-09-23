@@ -21,10 +21,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Mic
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.SystemUpdate
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -69,6 +66,7 @@ fun SearchScreen(
     onPickChar: (CharacterListItem) -> Unit,
     onOpenWordManager: () -> Unit = {},
     onOpenUpdate: () -> Unit = {},
+    onOpenDictation: () -> Unit = {},
 ) {
     val ui by state.collectAsStateWithLifecycle()
     val context = LocalContext.current
@@ -167,6 +165,9 @@ fun SearchScreen(
             TopAppBar(
                 title = { Text("汉字查字") },
                 actions = {
+                    IconButton(onClick = onOpenDictation) {
+                        Icon(Icons.Default.RecordVoiceOver, contentDescription = "词语听写")
+                    }
                     IconButton(onClick = onOpenUpdate) {
                         Icon(Icons.Default.SystemUpdate, contentDescription = "检查更新")
                     }

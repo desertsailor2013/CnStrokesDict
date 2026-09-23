@@ -16,6 +16,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.cnstrokesdict.app.ui.detail.DetailScreen
+import com.cnstrokesdict.app.ui.dictation.DictationScreen
 import com.cnstrokesdict.app.ui.home.SearchScreen
 import com.cnstrokesdict.app.ui.qrscan.QrScanScreen
 import com.cnstrokesdict.app.ui.qrshare.QrShareScreen
@@ -48,6 +49,7 @@ private const val ROUTE_WORD_MANAGER = "word_manager"
 private const val ROUTE_QR_SHARE = "qr_share/{packageId}"
 private const val ROUTE_QR_SCAN = "qr_scan"
 private const val ROUTE_UPDATE = "update"
+private const val ROUTE_DICTATION = "dictation"
 
 @Composable
 fun DictionaryApp() {
@@ -76,6 +78,7 @@ fun DictionaryApp() {
                 },
                 onOpenWordManager = { nav.navigate(ROUTE_WORD_MANAGER) },
                 onOpenUpdate = { nav.navigate(ROUTE_UPDATE) },
+                onOpenDictation = { nav.navigate(ROUTE_DICTATION) },
             )
         }
         composable(ROUTE_DETAIL) {
@@ -117,6 +120,11 @@ fun DictionaryApp() {
         }
         composable(ROUTE_UPDATE) {
             UpdateScreen(
+                onBack = { nav.popBackStack() },
+            )
+        }
+        composable(ROUTE_DICTATION) {
+            DictationScreen(
                 onBack = { nav.popBackStack() },
             )
         }
