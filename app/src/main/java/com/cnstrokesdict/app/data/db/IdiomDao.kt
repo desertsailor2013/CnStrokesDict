@@ -80,6 +80,40 @@ interface LearningDao {
 
     @Query("SELECT * FROM learning_stats ORDER BY date DESC LIMIT :limit")
     suspend fun getRecentStats(limit: Int = 7): List<LearningStatsEntity>
+
+    // ==================== V2 新增方法 ====================
+
+    /**
+     * 获取最近学习记录
+     */
+    @Query("SELECT * FROM learning_records ORDER BY created_at DESC LIMIT :limit")
+    suspend fun getRecentRecords(limit: Int = 100): List<LearningRecordEntity>
+
+    /**
+     * 获取已学习的词语列表
+     */
+    @Query("SELECT DISTINCT word FROM learning_records")
+    suspend fun getLearnedWords(): List<String>
+
+    /**
+     * 获取已学习词语数
+     */
+    @Query("SELECT COUNT(DISTINCT word) FROM learning_records")
+    suspend fun getLearnedWordCount(): Int
+
+    /**
+     * 获取已掌握词语数（正确率>80%）
+     */
+    @Query("""
+        SELECT COUNT(*) FROM (
+            SELECT word, 
+                   SUM(CASE WHEN is_correct = 1 THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as accuracy
+            FROM learning_records 
+            GROUP BY word 
+            HAVING accuracy > 80
+        )
+    """)
+    suspend fun getMasteredWordCount(): Int
 }
 
 data class FrequentError(

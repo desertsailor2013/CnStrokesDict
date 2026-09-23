@@ -84,4 +84,24 @@ interface WordDao {
 
     @Query("SELECT COUNT(*) FROM words WHERE package_id = :packageId")
     suspend fun countWordsByPackageId(packageId: Int): Int
+
+    // ==================== V2 新增方法 ====================
+
+    /**
+     * 获取所有词语
+     */
+    @Query("SELECT * FROM words ORDER BY word")
+    suspend fun getAllWords(): List<WordEntity>
+
+    /**
+     * 获取词语总数
+     */
+    @Query("SELECT COUNT(*) FROM words")
+    suspend fun getWordCount(): Int
+
+    /**
+     * 按词语查找
+     */
+    @Query("SELECT * FROM words WHERE word = :word LIMIT 1")
+    suspend fun getWordByWord(word: String): WordEntity?
 }
