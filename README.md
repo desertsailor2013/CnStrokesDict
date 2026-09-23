@@ -1,20 +1,24 @@
 # CnStrokesDict - 汉字笔画字典
 
-一款 Android 离线汉字字典应用，支持笔画顺序动画、语音查字、拼音检索、词语听写等功能。
+一款 Android 离线汉字字典应用，支持笔画顺序动画、语音查字、拼音检索、词语听写、成语词典等功能。
 
 ## 当前版本
 
-**V1.1** - 联网更新、更多词库、词语听写
+**V1.2** - 高中词库、成语词典、语音听写、学习统计
 
 | 功能 | 状态 |
 |------|------|
 | 小学1-6年级生字库（549字） | ✅ 完成 |
 | 初中7-9年级词语（94词） | ✅ 完成 |
-| 部编版教材词语表（404词） | ✅ 完成 |
+| 高中10-12年级词语（350词） | ✅ 完成 |
+| 部编版教材词语表（754词） | ✅ 完成 |
+| 成语词典（50条） | ✅ 完成 |
 | 自扩充词库功能 | ✅ 完成 |
 | 二维码分享词库 | ✅ 完成 |
 | 联网更新模式 | ✅ 完成 |
 | 词语听写功能 | ✅ 完成 |
+| 语音识别听写 | ✅ 完成 |
+| 学习进度统计 | ✅ 完成 |
 
 详细进度请查看 [项目状态](docs/项目状态.md)
 
@@ -41,6 +45,12 @@
 - **更多词库**：初中7-9年级词语数据
 - **词语听写**：TTS发音、听写练习、错词复习
 
+### V1.2 新增功能
+- **高中词库**：高中10-12年级词语（350词）
+- **成语词典**：常用成语（50条），支持分类查询
+- **语音识别听写**：语音输入替代手动输入
+- **学习进度统计**：学习时长、正确率、连续学习天数
+
 ## 技术栈
 
 | 技术 | 说明 |
@@ -55,6 +65,7 @@
 | Retrofit + OkHttp | 网络请求 |
 | ZXing | 二维码生成 |
 | Android TTS | 语音合成 |
+| Android SpeechRecognizer | 语音识别 |
 
 ## 项目结构
 
@@ -64,12 +75,15 @@ CnStrokesDict/
 │   └── src/main/
 │       ├── assets/dictionary/
 │       │   ├── characters.json         # 单字数据（549字）
-│       │   └── textbook_words.json     # 词语数据（404词）
+│       │   ├── textbook_words.json     # 词语数据（404词）
+│       │   ├── senior_high_words.json  # 高中词语数据（350词）
+│       │   └── idioms.json            # 成语词典数据（50条）
 │       └── java/com/cnstrokesdict/app/
 │           ├── MainActivity.kt              # 主 Activity，导航入口
 │           ├── data/
 │           │   ├── DictionaryModels.kt      # 数据模型定义
 │           │   ├── DictionaryRepository.kt  # 数据仓库层
+│           │   ├── IdiomRepository.kt       # 成语词典仓库
 │           │   ├── SearchTextUtil.kt        # 搜索文本工具
 │           │   ├── WordPackageManager.kt    # 词库包管理器
 │           │   ├── remote/
@@ -87,7 +101,12 @@ CnStrokesDict/
 │           │       ├── WordEntity.kt          # 词语实体
 │           │       ├── WordPackageEntity.kt   # 词库包实体
 │           │       ├── UserSettingsEntity.kt  # 用户设置实体
-│           │       └── WordDao.kt             # 词语数据访问
+│           │       ├── WordDao.kt             # 词语数据访问
+│           │       ├── IdiomEntity.kt         # 成语实体
+│           │       ├── IdiomDao.kt            # 成语数据访问
+│           │       ├── LearningRecordEntity.kt # 学习记录实体
+│           │       ├── LearningStatsEntity.kt  # 学习统计实体
+│           │       └── LearningDao.kt         # 学习数据访问
 │           ├── speech/
 │           │   └── VoskChineseAsr.kt       # Vosk 离线语音识别
 │           ├── ui/
@@ -107,6 +126,10 @@ CnStrokesDict/
 │           │   │   └── UpdateScreen.kt     # 检查更新界面
 │           │   ├── dictation/
 │           │   │   └── DictationScreen.kt  # 词语听写界面
+│           │   ├── idiom/
+│           │   │   └── IdiomDictionaryScreen.kt  # 成语词典界面
+│           │   ├── stats/
+│           │   │   └── LearningStatsScreen.kt  # 学习统计界面
 │           │   └── theme/
 │           │       └── Theme.kt            # Material3 主题
 │           ├── util/
@@ -114,6 +137,7 @@ CnStrokesDict/
 │           │   ├── QrCodeUtil.kt           # 二维码工具类
 │           │   ├── TtsManager.kt           # TTS语音管理器
 │           │   ├── DictationManager.kt     # 听写流程管理器
+│           │   ├── SpeechRecognizerManager.kt # 语音识别管理器
 │           │   ├── PerformanceMonitor.kt   # 性能监控工具
 │           │   └── MemoryMonitor.kt        # 内存监控工具
 │           └── vm/
@@ -122,7 +146,9 @@ CnStrokesDict/
 │               ├── QrShareViewModel.kt     # 二维码分享ViewModel
 │               ├── QrScanViewModel.kt      # 扫码导入ViewModel
 │               ├── UpdateViewModel.kt      # 更新界面ViewModel
-│               └── DictationViewModel.kt   # 听写界面ViewModel
+│               ├── DictationViewModel.kt   # 听写界面ViewModel
+│               ├── IdiomDictionaryViewModel.kt  # 成语词典ViewModel
+│               └── LearningStatsViewModel.kt  # 学习统计ViewModel
 ├── scripts/                                # 构建脚本
 │   ├── primary_school_chars.js             # 小学1-6年级生字清单
 │   ├── fetch_hanzi_data.js                 # 批量获取笔画数据
@@ -130,12 +156,17 @@ CnStrokesDict/
 │   ├── textbook_words.js                   # 小学词语表
 │   ├── junior_high_words.js                # 初中词语表
 │   ├── merge_words.js                      # 合并词语数据
+│   ├── senior_high_words.js                # 高中词语表
+│   ├── build_senior_high_words.js          # 构建高中词语JSON
+│   ├── idioms.js                           # 成语数据
+│   ├── build_idioms.js                     # 构建成语JSON
 │   ├── hanzi_raw/                          # 原始笔画数据
 │   ├── dict_data/                          # 构建的字库数据
 │   └── install_android_sdk.ps1             # SDK 安装脚本
 ├── docs/                                   # 项目文档
 │   ├── V1设计方案.md                        # V1版本设计方案
 │   ├── V1.1设计方案.md                      # V1.1版本设计方案
+│   ├── V1.2设计方案.md                      # V1.2版本设计方案
 │   └── 项目状态.md                          # 项目进度跟踪
 ├── build.gradle.kts                        # 根构建脚本
 ├── FAQ.md                                  # 常见问题解答
@@ -190,6 +221,10 @@ node fetch_hanzi_data.js              # 获取笔画数据（需联网）
 node build_full_dictionary.js         # 构建字库JSON
 node junior_high_words.js             # 查看初中词语统计
 node merge_words.js                   # 合并小学和初中词语
+node senior_high_words.js             # 查看高中词语统计
+node build_senior_high_words.js       # 构建高中词语JSON
+node idioms.js                        # 查看成语统计
+node build_idioms.js                  # 构建成语JSON
 ```
 
 生成的数据文件位于 `app/src/main/assets/dictionary/`。
@@ -211,6 +246,14 @@ node merge_words.js                   # 合并小学和初中词语
 | `word_packages` | 词库包表（名称、描述、作者等） |
 | `user_settings` | 用户设置表 |
 
+### V1.2 新增表结构
+| 表名 | 说明 |
+|------|------|
+| `idioms` | 成语表（成语、拼音、释义、出处等） |
+| `idioms_fts` | 成语FTS5全文搜索虚拟表 |
+| `learning_records` | 学习记录表 |
+| `learning_stats` | 学习统计表 |
+
 ## 语音识别
 
 - **首选**：Vosk 离线中文识别（首次使用自动下载模型约 50MB）
@@ -224,6 +267,7 @@ node merge_words.js                   # 合并小学和初中词语
 - 字形演进图片：百度百科等公开资源
 - 释义数据：自定义整理
 - 词语数据：部编版语文教材
+- 成语数据：常用成语词典
 
 ## 常见问题
 
@@ -239,6 +283,7 @@ node merge_words.js                   # 合并小学和初中词语
 
 - [V1设计方案](docs/V1设计方案.md) - V1版本详细设计方案
 - [V1.1设计方案](docs/V1.1设计方案.md) - V1.1版本详细设计方案
+- [V1.2设计方案](docs/V1.2设计方案.md) - V1.2版本详细设计方案
 - [项目状态](docs/项目状态.md) - 项目进度跟踪
 - [常见问题](FAQ.md) - 构建和运行问题解答
 
