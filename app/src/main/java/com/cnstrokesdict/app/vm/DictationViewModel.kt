@@ -7,6 +7,8 @@ import com.cnstrokesdict.app.data.TextbookWordEntry
 import com.cnstrokesdict.app.data.WordListItem
 import com.cnstrokesdict.app.data.db.WordPackageEntity
 import com.cnstrokesdict.app.util.DictationManager
+import com.cnstrokesdict.app.util.SpeechRecognizerManager
+import com.cnstrokesdict.app.util.SpeechRecognizerState
 import com.cnstrokesdict.app.util.TtsManager
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,6 +33,11 @@ data class DictationUiState(
     val mode: DictationManager.DictationMode = DictationManager.DictationMode.SEQUENTIAL,
     val errorMessage: String? = null,
     val successMessage: String? = null,
+    // 语音识别相关
+    val isVoiceMode: Boolean = false,
+    val speechState: SpeechRecognizerState = SpeechRecognizerState.Idle,
+    val recognizedText: String = "",
+    val isCorrect: Boolean? = null,
 )
 
 /**
@@ -40,6 +47,7 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val ttsManager = TtsManager(application)
     private val dictationManager = DictationManager()
+    private val speechRecognizerManager = SpeechRecognizerManager(application)
 
     private val _uiState = MutableStateFlow(DictationUiState())
     val uiState: StateFlow<DictationUiState> = _uiState.asStateFlow()
@@ -52,6 +60,23 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
                     _uiState.value = _uiState.value.copy(
                         errorMessage = "语音引擎不可用",
                     )
+                }
+            }
+        }
+
+        // 监听语音识别状态
+        viewModelScope.launch {
+            speechRecognizerManager.state.collect { state ->
+                _uiState.value = _uiState.value.copy(speechState = state)
+                when (state) {
+                    is SpeechRecognizerState.Success -> {
+                        _uiState.value = _uiState.value.copy(recognizedText = state.text)
+                        checkAnswer(state.text)
+                    }
+                    is SpeechRecognizerState.Error -> {
+                        _uiState.value = _uiState.value.copy(errorMessage = state.message)
+                    }
+                    else -> {}
                 }
             }
         }
@@ -110,6 +135,8 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
             currentWord = word,
             showAnswer = false,
             progress = dictationManager.getProgress(),
+            recognizedText = "",
+            isCorrect = null,
         )
 
         // 播放词语
@@ -120,6 +147,34 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
                     delay(dictationManager.getIntervalMs())
                 }
             }
+
+            // 播放完成后，如果是语音识别模式，开始监听
+            if (_uiState.value.isVoiceMode) {
+                delay(500) // 等待播放完成
+                speechRecognizerManager.startListening()
+            }
+        }
+    }
+
+    /**
+     * 检查答案（语音识别模式）
+     */
+    private fun checkAnswer(recognizedText: String) {
+        val currentWord = _uiState.value.currentWord ?: return
+        val isCorrect = recognizedText.trim() == currentWord.word
+
+        _uiState.value = _uiState.value.copy(isCorrect = isCorrect)
+
+        if (isCorrect) {
+            dictationManager.markCorrect(currentWord)
+        } else {
+            dictationManager.markError(currentWord)
+        }
+
+        // 延迟后继续下一个
+        viewModelScope.launch {
+            delay(1500)
+            playNextWord()
         }
     }
 
@@ -154,6 +209,7 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
      * 跳过当前词语
      */
     fun skip() {
+        speechRecognizerManager.cancel()
         playNextWord()
     }
 
@@ -191,9 +247,25 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     /**
+     * 切换语音识别模式
+     */
+    fun toggleVoiceMode() {
+        val newVoiceMode = !_uiState.value.isVoiceMode
+        _uiState.value = _uiState.value.copy(isVoiceMode = newVoiceMode)
+
+        if (newVoiceMode && !_uiState.value.isSetup) {
+            // 启用语音识别模式，开始监听
+            speechRecognizerManager.startListening()
+        } else {
+            speechRecognizerManager.cancel()
+        }
+    }
+
+    /**
      * 重新开始
      */
     fun restart() {
+        speechRecognizerManager.cancel()
         _uiState.value = _uiState.value.copy(
             isSetup = true,
             isPlaying = false,
@@ -202,6 +274,8 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
             progress = Pair(0, 0),
             errors = emptyList(),
             isComplete = false,
+            recognizedText = "",
+            isCorrect = null,
         )
     }
 
@@ -240,6 +314,7 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
      */
     fun stopDictation() {
         ttsManager.stop()
+        speechRecognizerManager.cancel()
         _uiState.value = _uiState.value.copy(
             isPlaying = false,
             currentWord = null,
@@ -259,5 +334,6 @@ class DictationViewModel(application: Application) : AndroidViewModel(applicatio
     override fun onCleared() {
         super.onCleared()
         ttsManager.shutdown()
+        speechRecognizerManager.destroy()
     }
 }
