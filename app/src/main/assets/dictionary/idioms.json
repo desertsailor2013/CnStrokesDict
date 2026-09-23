@@ -1,0 +1,992 @@
+{
+  "version": "1.0",
+  "description": "成语词典",
+  "totalCount": 50,
+  "categories": [
+    {
+      "name": "animal",
+      "label": "动物成语",
+      "count": 10
+    },
+    {
+      "name": "number",
+      "label": "数字成语",
+      "count": 10
+    },
+    {
+      "name": "color",
+      "label": "颜色成语",
+      "count": 10
+    },
+    {
+      "name": "body",
+      "label": "人体成语",
+      "count": 10
+    },
+    {
+      "name": "nature",
+      "label": "自然成语",
+      "count": 10
+    }
+  ],
+  "idioms": [
+    {
+      "idiom": "百发百中",
+      "pinyin": "bǎi fā bǎi zhòng",
+      "meaning": "形容射箭或射击技术非常高明",
+      "source": "《战国策·西周策》",
+      "examples": [
+        "他射箭百发百中，是个神射手。"
+      ],
+      "synonyms": [
+        "弹无虚发",
+        "百步穿杨"
+      ],
+      "antonyms": [
+        "屡射不中",
+        "百无一失"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "白手起家",
+      "pinyin": "bái shǒu qǐ jiā",
+      "meaning": "比喻原来没有基础，白手起家",
+      "source": "《汪大尹智审库官》",
+      "examples": [
+        "他白手起家，创办了这家公司。"
+      ],
+      "synonyms": [
+        "自力更生",
+        "艰苦创业"
+      ],
+      "antonyms": [
+        "继承祖业",
+        "坐享其成"
+      ],
+      "difficulty": 1,
+      "category": "color"
+    },
+    {
+      "idiom": "冰天雪地",
+      "pinyin": "bīng tiān xuě dì",
+      "meaning": "形容冰雪漫天盖地，非常寒冷",
+      "source": "《禅真逸史》",
+      "examples": [
+        "在冰天雪地的环境中，他们坚持工作。"
+      ],
+      "synonyms": [
+        "天寒地冻",
+        "寒冬腊月"
+      ],
+      "antonyms": [
+        "烈日炎炎",
+        "骄阳似火"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "姹紫嫣红",
+      "pinyin": "chà zǐ yān hóng",
+      "meaning": "形容各种花朵娇艳美丽",
+      "source": "《牡丹亭·惊梦》",
+      "examples": [
+        "公园里姹紫嫣红，百花齐放。"
+      ],
+      "synonyms": [
+        "万紫千红",
+        "花团锦簇"
+      ],
+      "antonyms": [
+        "枯枝败叶",
+        "死气沉沉"
+      ],
+      "difficulty": 2,
+      "category": "color"
+    },
+    {
+      "idiom": "橙黄橘绿",
+      "pinyin": "chéng huáng jú lǜ",
+      "meaning": "指秋季景物",
+      "source": "《赠刘景文》",
+      "examples": [
+        "橙黄橘绿的秋天，景色宜人。"
+      ],
+      "synonyms": [
+        "金风送爽",
+        "秋高气爽"
+      ],
+      "antonyms": [
+        "春暖花开",
+        "夏日炎炎"
+      ],
+      "difficulty": 2,
+      "category": "color"
+    },
+    {
+      "idiom": "春暖花开",
+      "pinyin": "chūn nuǎn huā kāi",
+      "meaning": "指春天气候温暖，百花盛开",
+      "source": "《枕中记》",
+      "examples": [
+        "春暖花开的季节，适合郊游。"
+      ],
+      "synonyms": [
+        "风和日丽",
+        "鸟语花香"
+      ],
+      "antonyms": [
+        "冰天雪地",
+        "寒冬腊月"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "胆大心细",
+      "pinyin": "dǎn dà xīn xì",
+      "meaning": "形容做事果断，考虑周密",
+      "source": "《旧唐书·孙思邈传》",
+      "examples": [
+        "做手术要胆大心细，不能有丝毫马虎。"
+      ],
+      "synonyms": [
+        "有胆有识",
+        "粗中有细"
+      ],
+      "antonyms": [
+        "胆小如鼠",
+        "粗心大意"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "对牛弹琴",
+      "pinyin": "duì niú tán qín",
+      "meaning": "比喻对不懂道理的人讲道理",
+      "source": "《理惑论》",
+      "examples": [
+        "跟他讲这些道理就是对牛弹琴。"
+      ],
+      "synonyms": [
+        "白费口舌",
+        "无的放矢"
+      ],
+      "antonyms": [
+        "有的放矢",
+        "因材施教"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "耳聪目明",
+      "pinyin": "ěr cōng mù míng",
+      "meaning": "形容头脑清楚，眼光敏锐",
+      "source": "《周易·鼎》",
+      "examples": [
+        "爷爷虽然八十岁了，但耳聪目明。"
+      ],
+      "synonyms": [
+        "眼观六路",
+        "耳听八方"
+      ],
+      "antonyms": [
+        "耳聋眼花",
+        "老眼昏花"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "风和日丽",
+      "pinyin": "fēng hé rì lì",
+      "meaning": "形容天气晴朗温和",
+      "source": "《西厢记》",
+      "examples": [
+        "今天风和日丽，适合出去游玩。"
+      ],
+      "synonyms": [
+        "春暖花开",
+        "晴空万里"
+      ],
+      "antonyms": [
+        "狂风暴雨",
+        "乌云密布"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "鹤立鸡群",
+      "pinyin": "hè lì jī qún",
+      "meaning": "比喻一个人的仪表或才能在周围一群人里显得很突出",
+      "source": "《世说新语·容止》",
+      "examples": [
+        "她在人群中鹤立鸡群，格外引人注目。"
+      ],
+      "synonyms": [
+        "出类拔萃",
+        "卓尔不群"
+      ],
+      "antonyms": [
+        "泯然众人",
+        "默默无闻"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "黑白分明",
+      "pinyin": "hēi bái fēn míng",
+      "meaning": "比喻事非界限很清楚",
+      "source": "《汉书·薛宣传》",
+      "examples": [
+        "他做事黑白分明，从不徇私。"
+      ],
+      "synonyms": [
+        "泾渭分明",
+        "是非分明"
+      ],
+      "antonyms": [
+        "混淆黑白",
+        "颠倒黑白"
+      ],
+      "difficulty": 1,
+      "category": "color"
+    },
+    {
+      "idiom": "红男绿女",
+      "pinyin": "hóng nán lǜ nǚ",
+      "meaning": "指穿着各种漂亮服装的青年男女",
+      "source": "《二十年目睹之怪现状》",
+      "examples": [
+        "公园里红男绿女，好不热闹。"
+      ],
+      "synonyms": [
+        "俊男美女",
+        "才子佳人"
+      ],
+      "antonyms": [
+        "孤男寡女",
+        "形影相吊"
+      ],
+      "difficulty": 2,
+      "category": "color"
+    },
+    {
+      "idiom": "狐假虎威",
+      "pinyin": "hú jiǎ hǔ wēi",
+      "meaning": "比喻借别人的威势吓唬人",
+      "source": "《战国策·楚策一》",
+      "examples": [
+        "他总是狐假虎威，仗势欺人。"
+      ],
+      "synonyms": [
+        "狗仗人势",
+        "仗势欺人"
+      ],
+      "antonyms": [
+        "独来独往",
+        "自力更生"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "花好月圆",
+      "pinyin": "huā hǎo yuè yuán",
+      "meaning": "比喻美好圆满",
+      "source": "《行香子》",
+      "examples": [
+        "祝你们花好月圆，幸福美满。"
+      ],
+      "synonyms": [
+        "圆满成功",
+        "万事如意"
+      ],
+      "antonyms": [
+        "花残月缺",
+        "支离破碎"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "花红柳绿",
+      "pinyin": "huā hóng liǔ lǜ",
+      "meaning": "形容明媚的春天景象",
+      "source": "《南村辍耕录》",
+      "examples": [
+        "春天来了，到处花红柳绿。"
+      ],
+      "synonyms": [
+        "姹紫嫣红",
+        "万紫千红"
+      ],
+      "antonyms": [
+        "枯枝败叶",
+        "死气沉沉"
+      ],
+      "difficulty": 1,
+      "category": "color"
+    },
+    {
+      "idiom": "画蛇添足",
+      "pinyin": "huà shé tiān zú",
+      "meaning": "比喻做了多余的事，非但无益，反而不合适",
+      "source": "《战国策·齐策二》",
+      "examples": [
+        "这篇文章已经很完整了，再加这段就是画蛇添足。"
+      ],
+      "synonyms": [
+        "多此一举",
+        "弄巧成拙"
+      ],
+      "antonyms": [
+        "恰到好处",
+        "画龙点睛"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "鸡飞蛋打",
+      "pinyin": "jī fēi dàn dǎ",
+      "meaning": "比喻两头落空，一无所得",
+      "source": "民间俗语",
+      "examples": [
+        "他既没赚到钱，又丢了工作，真是鸡飞蛋打。"
+      ],
+      "synonyms": [
+        "人财两空",
+        "竹篮打水"
+      ],
+      "antonyms": [
+        "双喜临门",
+        "满载而归"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "井底之蛙",
+      "pinyin": "jǐng dǐ zhī wā",
+      "meaning": "比喻见识狭隘的人",
+      "source": "《庄子·秋水》",
+      "examples": [
+        "他就像井底之蛙，没见过世面。"
+      ],
+      "synonyms": [
+        "坐井观天",
+        "鼠目寸光"
+      ],
+      "antonyms": [
+        "见多识广",
+        "博学多才"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "口是心非",
+      "pinyin": "kǒu shì xīn fēi",
+      "meaning": "嘴里说的是一套，心里想的又是另一套",
+      "source": "《抱朴子·微旨》",
+      "examples": [
+        "他这个人总是口是心非，不可相信。"
+      ],
+      "synonyms": [
+        "言不由衷",
+        "阳奉阴违"
+      ],
+      "antonyms": [
+        "心口如一",
+        "表里如一"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "雷厉风行",
+      "pinyin": "léi lì fēng xíng",
+      "meaning": "形容行动迅速果断",
+      "source": "《旧唐书·韩愈传》",
+      "examples": [
+        "他做事雷厉风行，效率很高。"
+      ],
+      "synonyms": [
+        "大刀阔斧",
+        "干脆利落"
+      ],
+      "antonyms": [
+        "拖泥带水",
+        "慢条斯理"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "龙飞凤舞",
+      "pinyin": "lóng fēi fèng wǔ",
+      "meaning": "形容书法笔势有力，灵活舒展",
+      "source": "《兰亭序》",
+      "examples": [
+        "他的书法龙飞凤舞，气势磅礴。"
+      ],
+      "synonyms": [
+        "笔走龙蛇",
+        "挥洒自如"
+      ],
+      "antonyms": [
+        "规规矩矩",
+        "工工整整"
+      ],
+      "difficulty": 2,
+      "category": "animal"
+    },
+    {
+      "idiom": "绿林好汉",
+      "pinyin": "lù lín hǎo hàn",
+      "meaning": "指聚集山林反抗封建统治阶级的人们",
+      "source": "《水浒传》",
+      "examples": [
+        "他像个绿林好汉，劫富济贫。"
+      ],
+      "synonyms": [
+        "草莽英雄",
+        "绿林豪客"
+      ],
+      "antonyms": [
+        "达官贵人",
+        "王孙公子"
+      ],
+      "difficulty": 2,
+      "category": "color"
+    },
+    {
+      "idiom": "马到成功",
+      "pinyin": "mǎ dào chéng gōng",
+      "meaning": "形容工作刚开始就取得成功",
+      "source": "《三国演义》",
+      "examples": [
+        "祝你马到成功，旗开得胜！"
+      ],
+      "synonyms": [
+        "旗开得胜",
+        "一蹴而就"
+      ],
+      "antonyms": [
+        "屡战屡败",
+        "一败涂地"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "眉飞色舞",
+      "pinyin": "méi fēi sè wǔ",
+      "meaning": "形容人得意兴奋的样子",
+      "source": "《官场现形记》",
+      "examples": [
+        "说起自己的成绩，他眉飞色舞。"
+      ],
+      "synonyms": [
+        "得意洋洋",
+        "喜形于色"
+      ],
+      "antonyms": [
+        "愁眉苦脸",
+        "垂头丧气"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "面红耳赤",
+      "pinyin": "miàn hóng ěr chì",
+      "meaning": "形容因激动或羞愧而脸色发红的样子",
+      "source": "《朱子语类》",
+      "examples": [
+        "两人争得面红耳赤。"
+      ],
+      "synonyms": [
+        "面红耳热",
+        "满脸通红"
+      ],
+      "antonyms": [
+        "面不改色",
+        "从容不迫"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "目瞪口呆",
+      "pinyin": "mù dèng kǒu dāi",
+      "meaning": "形容因吃惊或害怕而发愣的样子",
+      "source": "《敦煌变文集》",
+      "examples": [
+        "听到这个消息，他目瞪口呆。"
+      ],
+      "synonyms": [
+        "瞠目结舌",
+        "呆若木鸡"
+      ],
+      "antonyms": [
+        "神色自若",
+        "从容不迫"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "七上八下",
+      "pinyin": "qī shàng bā xià",
+      "meaning": "形容心里慌乱不安",
+      "source": "《水浒传》",
+      "examples": [
+        "考试成绩还没出来，我心里七上八下的。"
+      ],
+      "synonyms": [
+        "忐忑不安",
+        "心神不定"
+      ],
+      "antonyms": [
+        "心安理得",
+        "泰然自若"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "千方百计",
+      "pinyin": "qiān fāng bǎi jì",
+      "meaning": "想尽或用尽一切办法",
+      "source": "《朱子语类·卷三十五》",
+      "examples": [
+        "他千方百计地想要达成目标。"
+      ],
+      "synonyms": [
+        "想方设法",
+        "挖空心思"
+      ],
+      "antonyms": [
+        "无计可施",
+        "束手无策"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "青出于蓝",
+      "pinyin": "qīng chū yú lán",
+      "meaning": "比喻学生胜过老师，后人超过前人",
+      "source": "《荀子·劝学》",
+      "examples": [
+        "他青出于蓝，成就超过了老师。"
+      ],
+      "synonyms": [
+        "后来居上",
+        "后生可畏"
+      ],
+      "antonyms": [
+        "每况愈下",
+        "江河日下"
+      ],
+      "difficulty": 2,
+      "category": "color"
+    },
+    {
+      "idiom": "青红皂白",
+      "pinyin": "qīng hóng zào bái",
+      "meaning": "比喻事情的是非曲直",
+      "source": "《水浒传》",
+      "examples": [
+        "他不分青红皂白就骂人。"
+      ],
+      "synonyms": [
+        "是非曲直",
+        "来龙去脉"
+      ],
+      "antonyms": [
+        "黑白分明",
+        "泾渭分明"
+      ],
+      "difficulty": 2,
+      "category": "color"
+    },
+    {
+      "idiom": "秋高气爽",
+      "pinyin": "qiū gāo qì shuǎng",
+      "meaning": "形容秋季晴空万里，天气清爽",
+      "source": "《新唐书·陈子昂传》",
+      "examples": [
+        "秋天秋高气爽，是旅游的好时节。"
+      ],
+      "synonyms": [
+        "天高云淡",
+        "金风送爽"
+      ],
+      "antonyms": [
+        "春暖花开",
+        "夏日炎炎"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "三心二意",
+      "pinyin": "sān xīn èr yì",
+      "meaning": "形容犹豫不决或意志不坚定",
+      "source": "民间俗语",
+      "examples": [
+        "做事不能三心二意，要专心致志。"
+      ],
+      "synonyms": [
+        "犹豫不决",
+        "瞻前顾后"
+      ],
+      "antonyms": [
+        "一心一意",
+        "全心全意"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "三言两语",
+      "pinyin": "sān yán liǎng yǔ",
+      "meaning": "很少的几句话",
+      "source": "《水浒传》",
+      "examples": [
+        "这件事三言两语说不清楚。"
+      ],
+      "synonyms": [
+        "片言只语",
+        "只言片语"
+      ],
+      "antonyms": [
+        "千言万语",
+        "长篇大论"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "山清水秀",
+      "pinyin": "shān qīng shuǐ xiù",
+      "meaning": "形容风景优美",
+      "source": "《水浒传》",
+      "examples": [
+        "我的家乡山清水秀，风景如画。"
+      ],
+      "synonyms": [
+        "鸟语花香",
+        "湖光山色"
+      ],
+      "antonyms": [
+        "穷山恶水",
+        "不毛之地"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "十全十美",
+      "pinyin": "shí quán shí měi",
+      "meaning": "各方面都非常完美，毫无缺陷",
+      "source": "《周礼·天官冢宰》",
+      "examples": [
+        "世界上没有十全十美的事物。"
+      ],
+      "synonyms": [
+        "完美无缺",
+        "尽善尽美"
+      ],
+      "antonyms": [
+        "一无是处",
+        "百孔千疮"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "手忙脚乱",
+      "pinyin": "shǒu máng jiǎo luàn",
+      "meaning": "形容做事慌张而没有条理",
+      "source": "《水浒传》",
+      "examples": [
+        "第一次做饭，他手忙脚乱的。"
+      ],
+      "synonyms": [
+        "惊慌失措",
+        "手足无措"
+      ],
+      "antonyms": [
+        "从容不迫",
+        "有条不紊"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "守株待兔",
+      "pinyin": "shǒu zhū dài tù",
+      "meaning": "比喻不主动努力，而存万一的侥幸心理",
+      "source": "《韩非子·五蠹》",
+      "examples": [
+        "学习不能守株待兔，要主动出击。"
+      ],
+      "synonyms": [
+        "刻舟求剑",
+        "墨守成规"
+      ],
+      "antonyms": [
+        "随机应变",
+        "灵活变通"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "水落石出",
+      "pinyin": "shuǐ luò shí chū",
+      "meaning": "比喻事情的真相完全显露出来",
+      "source": "《后赤壁赋》",
+      "examples": [
+        "这件事迟早会水落石出的。"
+      ],
+      "synonyms": [
+        "真相大白",
+        "原形毕露"
+      ],
+      "antonyms": [
+        "扑朔迷离",
+        "真假难辨"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "四面八方",
+      "pinyin": "sì miàn bā fāng",
+      "meaning": "指各个方面或各个地方",
+      "source": "《景德传灯录》",
+      "examples": [
+        "人们从四面八方赶来参加活动。"
+      ],
+      "synonyms": [
+        "五湖四海",
+        "天南地北"
+      ],
+      "antonyms": [
+        "弹丸之地",
+        "一隅之地"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "天长地久",
+      "pinyin": "tiān cháng dì jiǔ",
+      "meaning": "形容时间长久",
+      "source": "《老子》",
+      "examples": [
+        "祝你们的爱情天长地久。"
+      ],
+      "synonyms": [
+        "海枯石烂",
+        "地老天荒"
+      ],
+      "antonyms": [
+        "昙花一现",
+        "稍纵即逝"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    },
+    {
+      "idiom": "头头是道",
+      "pinyin": "tóu tóu shì dào",
+      "meaning": "形容说话做事有条有理",
+      "source": "《续传灯录》",
+      "examples": [
+        "他分析问题头头是道。"
+      ],
+      "synonyms": [
+        "有条不紊",
+        "井井有条"
+      ],
+      "antonyms": [
+        "杂乱无章",
+        "乱七八糟"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "万紫千红",
+      "pinyin": "wàn zǐ qiān hóng",
+      "meaning": "形容百花齐放，色彩艳丽",
+      "source": "《春日》",
+      "examples": [
+        "春天来了，花园里万紫千红。"
+      ],
+      "synonyms": [
+        "姹紫嫣红",
+        "五彩缤纷"
+      ],
+      "antonyms": [
+        "枯枝败叶",
+        "死气沉沉"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "亡羊补牢",
+      "pinyin": "wáng yáng bǔ láo",
+      "meaning": "比喻出了问题以后想办法补救，防止继续受损失",
+      "source": "《战国策·楚策四》",
+      "examples": [
+        "虽然损失了一些，但亡羊补牢，为时未晚。"
+      ],
+      "synonyms": [
+        "知错就改",
+        "迷途知返"
+      ],
+      "antonyms": [
+        "执迷不悟",
+        "一错再错"
+      ],
+      "difficulty": 1,
+      "category": "animal"
+    },
+    {
+      "idiom": "五光十色",
+      "pinyin": "wǔ guāng shí sè",
+      "meaning": "形容色彩鲜艳，花样繁多",
+      "source": "《二十年目睹之怪现状》",
+      "examples": [
+        "橱窗里陈列着五光十色的商品。"
+      ],
+      "synonyms": [
+        "五彩缤纷",
+        "五颜六色"
+      ],
+      "antonyms": [
+        "暗淡无光",
+        "单调乏味"
+      ],
+      "difficulty": 1,
+      "category": "color"
+    },
+    {
+      "idiom": "五湖四海",
+      "pinyin": "wǔ hú sì hǎi",
+      "meaning": "泛指全国各地，有时也指世界各地",
+      "source": "《周礼·职方氏》",
+      "examples": [
+        "他朋友遍天下，五湖四海都有熟人。"
+      ],
+      "synonyms": [
+        "四面八方",
+        "天南地北"
+      ],
+      "antonyms": [
+        "弹丸之地",
+        "一隅之地"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "心心相印",
+      "pinyin": "xīn xīn xiāng yìn",
+      "meaning": "形容彼此思想感情完全投合",
+      "source": "《六祖大师法宝坛经》",
+      "examples": [
+        "他们夫妻俩心心相印，恩爱无比。"
+      ],
+      "synonyms": [
+        "情投意合",
+        "心有灵犀"
+      ],
+      "antonyms": [
+        "貌合神离",
+        "同床异梦"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "心血来潮",
+      "pinyin": "xīn xuè lái cháo",
+      "meaning": "形容心里突然或偶然起了一个念头",
+      "source": "《封神演义》",
+      "examples": [
+        "他心血来潮，决定去旅行。"
+      ],
+      "synonyms": [
+        "突发奇想",
+        "灵机一动"
+      ],
+      "antonyms": [
+        "深思熟虑",
+        "处心积虑"
+      ],
+      "difficulty": 1,
+      "category": "body"
+    },
+    {
+      "idiom": "一心一意",
+      "pinyin": "yī xīn yī yì",
+      "meaning": "形容做事专心，一点也不分心",
+      "source": "《三国演义》",
+      "examples": [
+        "他一心一意地学习，终于考上了大学。"
+      ],
+      "synonyms": [
+        "全心全意",
+        "专心致志"
+      ],
+      "antonyms": [
+        "三心二意",
+        "心不在焉"
+      ],
+      "difficulty": 1,
+      "category": "number"
+    },
+    {
+      "idiom": "云开雾散",
+      "pinyin": "yún kāi wù sàn",
+      "meaning": "比喻困难或误解消除",
+      "source": "《景德传灯录》",
+      "examples": [
+        "经过解释，误会终于云开雾散了。"
+      ],
+      "synonyms": [
+        "雨过天晴",
+        "拨云见日"
+      ],
+      "antonyms": [
+        "乌云密布",
+        "迷雾重重"
+      ],
+      "difficulty": 1,
+      "category": "nature"
+    }
+  ],
+  "stats": {
+    "animal": 10,
+    "number": 10,
+    "color": 10,
+    "body": 10,
+    "nature": 10,
+    "total": 50
+  }
+}
