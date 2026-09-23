@@ -21,6 +21,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
         LearningStatsEntity::class,
         AchievementEntity::class,
         LeaderboardEntity::class,
+        ProfessionalTermEntity::class,
     ],
     version = 4,
     exportSchema = false,
@@ -31,6 +32,7 @@ abstract class DictionaryDatabase : RoomDatabase() {
     abstract fun idiomDao(): IdiomDao
     abstract fun learningDao(): LearningDao
     abstract fun achievementDao(): AchievementDao
+    abstract fun professionalTermDao(): ProfessionalTermDao
 
     companion object {
         @Volatile
@@ -170,7 +172,7 @@ abstract class DictionaryDatabase : RoomDatabase() {
             }
         }
 
-        /** 版本3 → 4：新增 achievements、leaderboard 表 */
+        /** 版本3 → 4：新增 achievements、leaderboard、professional_terms 表 */
         private val MIGRATION_3_4 = object : Migration(3, 4) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 db.execSQL(
@@ -203,6 +205,22 @@ abstract class DictionaryDatabase : RoomDatabase() {
                 )
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_leaderboard_score ON leaderboard (score DESC)")
                 db.execSQL("CREATE INDEX IF NOT EXISTS index_leaderboard_game_type ON leaderboard (game_type)")
+
+                db.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS professional_terms (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        word TEXT NOT NULL,
+                        pinyin TEXT NOT NULL DEFAULT '',
+                        meaning TEXT NOT NULL DEFAULT '',
+                        category TEXT NOT NULL DEFAULT '',
+                        difficulty INTEGER NOT NULL DEFAULT 1,
+                        created_at INTEGER NOT NULL DEFAULT 0
+                    )
+                    """
+                )
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_professional_terms_word ON professional_terms (word)")
+                db.execSQL("CREATE INDEX IF NOT EXISTS index_professional_terms_category ON professional_terms (category)")
             }
         }
 

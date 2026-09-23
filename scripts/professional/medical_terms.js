@@ -1,0 +1,112 @@
+// 医学专业术语
+const medicalTerms = [
+  // 基础医学
+  { word: "心脏", pinyin: "xīn zàng", meaning: "人体最重要的器官，负责泵血循环", category: "解剖学" },
+  { word: "肝脏", pinyin: "gān zàng", meaning: "人体最大的消化腺，负责解毒代谢", category: "解剖学" },
+  { word: "肾脏", pinyin: "shèn zàng", meaning: "形成尿液的器官，维持水电解质平衡", category: "解剖学" },
+  { word: "肺脏", pinyin: "fèi zàng", meaning: "呼吸系统主要器官，进行气体交换", category: "解剖学" },
+  { word: "大脑", pinyin: "dà nǎo", meaning: "中枢神经系统最高级部分，控制思维活动", category: "解剖学" },
+  { word: "脊髓", pinyin: "jǐ suǐ", meaning: "中枢神经系统的一部分，传导神经冲动", category: "解剖学" },
+  { word: "血管", pinyin: "xuè guǎn", meaning: "血液流动的管道，包括动脉、静脉和毛细血管", category: "解剖学" },
+  { word: "神经", pinyin: "shén jīng", meaning: "传递神经冲动的纤维束", category: "解剖学" },
+  { word: "淋巴", pinyin: "líng bā",含义: "淋巴系统中的液体，参与免疫防御", category: "解剖学" },
+  { word: "骨骼", pinyin: "gǔ gé", meaning: "人体的支架结构，由骨头组成", category: "解剖学" },
+
+  // 疾病名称
+  { word: "高血压", pinyin: "gāo xuè yā", meaning: "血压持续升高的慢性疾病", category: "心血管" },
+  { word: "糖尿病", pinyin: "táng niào bìng", meaning: "胰岛素分泌不足或作用缺陷引起的代谢疾病", category: "内分泌" },
+  { word: "冠心病", pinyin: "guàn xīn bìng", meaning: "冠状动脉粥样硬化性心脏病", category: "心血管" },
+  { word: "肺炎", pinyin: "fèi yán", meaning: "肺部感染性炎症", category: "呼吸系统" },
+  { word: "肝炎", pinyin: "gān yán", meaning: "肝脏炎症性疾病", category: "消化系统" },
+  { word: "肾炎", pinyin: "shèn yán", meaning: "肾脏炎症性疾病", category: "泌尿系统" },
+  { word: "胃炎", pinyin: "wèi yán", meaning: "胃黏膜炎症", category: "消化系统" },
+  { word: "肠炎", pinyin: "cháng yán", meaning: "肠道炎症性疾病", category: "消化系统" },
+  { word: "脑梗塞", pinyin: "nǎo gěng sè", meaning: "脑血管阻塞导致的脑组织坏死", category: "神经内科" },
+  { word: "脑出血", pinyin: "nǎo chū xuè", meaning: "脑血管破裂导致的脑内出血", category: "神经内科" },
+
+  // 症状描述
+  { word: "发热", pinyin: "fā rè", meaning: "体温超过正常范围", category: "症状" },
+  { word: "咳嗽", pinyin: "ké sòu", meaning: "呼吸道防御性反射动作", category: "症状" },
+  { word: "胸闷", pinyin: "xiōng mèn", meaning: "胸部压迫感或窒息感", category: "症状" },
+  { word: "心悸", pinyin: "xīn jì", meaning: "心跳异常或不适感", category: "症状" },
+  { word: "头痛", pinyin: "tóu tòng", meaning: "头部疼痛感", category: "症状" },
+  { word: "眩晕", pinyin: "xuàn yūn", meaning: "感觉自身或周围物体旋转", category: "症状" },
+  { word: "恶心", pinyin: "ě xīn", meaning: "想要呕吐的感觉", category: "症状" },
+  { word: "呕吐", pinyin: "ǒu tù", meaning: "胃内容物经口腔排出", category: "症状" },
+  { word: "腹泻", pinyin: "fù xiè", meaning: "大便次数增多、性状稀薄", category: "症状" },
+  { word: "便秘", pinyin: "biàn mì", meaning: "排便次数减少、粪便干硬", category: "症状" },
+
+  // 诊断方法
+  { word: "血压", pinyin: "xuè yā", meaning: "血液对血管壁的侧压力", category: "检查" },
+  { word: "心电图", pinyin: "xīn diàn tú", meaning: "记录心脏电活动的图形", category: "检查" },
+  { word: "CT", pinyin: "CT", meaning: "计算机断层扫描，用于人体断面成像", category: "检查" },
+  { word: "核磁共振", pinyin: "hé cí gòng zhèn", meaning: "利用磁场和射频脉冲进行人体成像", category: "检查" },
+  { word: "超声", pinyin: "chāo shēng", meaning: "利用超声波进行人体检查", category: "检查" },
+  { word: "血常规", pinyin: "xuè cháng guī", meaning: "血液一般检验项目", category: "检查" },
+  { word: "尿常规", pinyin: "niào cháng guī", meaning: "尿液一般检验项目", category: "检查" },
+  { word: "生化", pinyin: "shēng huà", meaning: "生物化学检验项目", category: "检查" },
+  { word: "病理", pinyin: "bìng lǐ", meaning: "疾病组织学检查", category: "检查" },
+  { word: "内镜", pinyin: "nèi jìng", meaning: "通过管状器械观察体内器官", category: "检查" },
+
+  // 治疗方法
+  { word: "手术", pinyin: "shǒu shù", meaning: "通过外科手段治疗疾病", category: "治疗" },
+  { word: "化疗", pinyin: "huà liáo", meaning: "化学药物治疗", category: "治疗" },
+  { word: "放疗", pinyin: "fàng liáo", meaning: "放射线治疗", category: "治疗" },
+  { word: "输液", pinyin: "shū yè", meaning: "静脉滴注液体或药物", category: "治疗" },
+  { word: "注射", pinyin: "zhù shè", meaning: "将药物注入体内", category: "治疗" },
+  { word: "服药", pinyin: "fú yào", meaning: "口服药物", category: "治疗" },
+  { word: "针灸", pinyin: "zhēn jiǔ", meaning: "中医传统治疗方法，针刺和艾灸", category: "治疗" },
+  { word: "推拿", pinyin: "tuī ná", meaning: "中医手法治疗", category: "治疗" },
+  { word: "康复", pinyin: "kāng fù", meaning: "疾病恢复期的综合治疗", category: "治疗" },
+  { word: "护理", pinyin: "hù lǐ", meaning: "对患者的照料和照顾", category: "治疗" },
+
+  // 医疗器械
+  { word: "听诊器", pinyin: "tīng zhěn qì", meaning: "听取心肺声音的器械", category: "器械" },
+  { word: "血压计", pinyin: "xuè yā jì", meaning: "测量血压的仪器", category: "器械" },
+  { word: "体温计", pinyin: "tǐ wēn jì", meaning: "测量体温的仪器", category: "器械" },
+  { word: "注射器", pinyin: "zhù shè qì", meaning: "用于注射的医疗器械", category: "器械" },
+  { word: "手术刀", pinyin: "shǒu shù dāo", meaning: "外科手术用刀具", category: "器械" },
+  { word: "缝合针", pinyin: "féng hé zhēn", meaning: "手术缝合用针", category: "器械" },
+  { word: "导管", pinyin: "dǎo guǎn", meaning: "插入体腔或血管的管状器械", category: "器械" },
+  { word: "支架", pinyin: "zhī jià", meaning: "支撑或扩张狭窄管腔的器械", category: "器械" },
+  { word: "假体", pinyin: "jiǎ tǐ", meaning: "替代人体组织或器官的人工装置", category: "器械" },
+  { word: "缝线", pinyin: "féng xiàn", meaning: "手术缝合用线", category: "器械" },
+
+  // 药物相关
+  { word: "抗生素", pinyin: "kàng shēng sù", meaning: "抑制或杀灭细菌的药物", category: "药物" },
+  { word: "止痛药", pinyin: "zhǐ tòng yào", meaning: "缓解疼痛的药物", category: "药物" },
+  { word: "退烧药", pinyin: "tuì shāo yào", meaning: "降低体温的药物", category: "药物" },
+  { word: "消炎药", pinyin: "xiāo yán yào", meaning: "减轻炎症反应的药物", category: "药物" },
+  { word: "降压药", pinyin: "jiàng yā yào", meaning: "降低血压的药物", category: "药物" },
+  { word: "降糖药", pinyin: "jiàng táng yào", meaning: "降低血糖的药物", category: "药物" },
+  { word: "镇静剂", pinyin: "zhèn jìng jì", meaning: "具有镇静作用的药物", category: "药物" },
+  { word: "麻醉药", pinyin: "má zuì yào", meaning: "使机体暂时失去痛觉的药物", category: "药物" },
+  { word: "维生素", pinyin: "wéi shēng sù", meaning: "维持人体正常生理功能的有机物质", category: "药物" },
+  { word: "疫苗", pinyin: "yì miáo", meaning: "预防传染病的生物制品", category: "药物" },
+
+  // 医学科室
+  { word: "内科", pinyin: "nèi kē", meaning: "诊治内脏疾病的科室", category: "科室" },
+  { word: "外科", pinyin: "wài kē", meaning: "通过手术治疗疾病的科室", category: "科室" },
+  { word: "妇科", pinyin: "fù kē", meaning: "诊治女性生殖系统疾病的科室", category: "科室" },
+  { word: "儿科", pinyin: "ér kē", meaning: "诊治儿童疾病的科室", category: "科室" },
+  { word: "骨科", pinyin: "gǔ kē", meaning: "诊治骨骼肌肉疾病的科室", category: "科室" },
+  { word: "眼科", pinyin: "yǎn kē", meaning: "诊治眼部疾病的科室", category: "科室" },
+  { word: "耳鼻喉科", pinyin: "ěr bí hóu kē", meaning: "诊治耳鼻喉疾病的科室", category: "科室" },
+  { word: "口腔科", pinyin: "kǒu qiāng kē", meaning: "诊治口腔疾病的科室", category: "科室" },
+  { word: "皮肤科", pinyin: "pí fū kē", meaning: "诊治皮肤疾病的科室", category: "科室" },
+  { word: "神经科", pinyin: "shén jīng kē", meaning: "诊治神经系统疾病的科室", category: "科室" },
+
+  // 中医术语
+  { word: "阴阳", pinyin: "yīn yáng", meaning: "中医基本理论概念", category: "中医" },
+  { word: "五行", pinyin: "wǔ xíng", meaning: "木火土金水五行学说", category: "中医" },
+  { word: "气血", pinyin: "qì xuè", meaning: "中医对人体基本物质的认识", category: "中医" },
+  { word: "经络", pinyin: "jīng luò", meaning: "中医对人体通道系统的认识", category: "中医" },
+  { word: "脏腑", pinyin: "zàng fǔ", meaning: "中医对人体内脏的总称", category: "中医" },
+  { word: "望闻问切", pinyin: "wàng wén wèn qiè", meaning: "中医四诊方法", category: "中医" },
+  { word: "辨证论治", pinyin: "biàn zhèng lùn zhì", meaning: "中医诊疗基本原则", category: "中医" },
+  { word: "扶正祛邪", pinyin: "fú zhèng qū xié", meaning: "中医治疗原则", category: "中医" },
+  { word: "活血化瘀", pinyin: "huó xuè huà yū", meaning: "中医治疗方法", category: "中医" },
+  { word: "清热解毒", pinyin: "qīng rè jiě dú", meaning: "中医治疗方法", category: "中医" },
+];
+
+module.exports = medicalTerms;
